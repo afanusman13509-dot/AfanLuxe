@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#10100f">
+<title>AfanLuxe — Everyday, Elevated</title>
+<style>
+:root{--ink:#171715;--muted:#77756e;--cream:#f7f5ef;--paper:#fffefa;--gold:#b99a5b;--line:#e8e4da}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+header{background:#10100f;color:#fff;position:sticky;top:0;z-index:10;border-bottom:1px solid #34332e}
+.top{max-width:1240px;margin:auto;padding:18px 5%;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{font-family:Georgia,serif;font-size:27px;letter-spacing:2px;font-weight:bold}.brand span{color:#d3b879}
+nav{display:flex;gap:22px;align-items:center;flex-wrap:wrap}nav a{color:#e8e5dd;text-decoration:none;font-size:13px}nav a:hover{color:#d3b879}
+.admin{background:transparent;border:1px solid #b99a5b;color:#e5d2a5;padding:10px 15px;border-radius:2px;cursor:pointer}
+.hero{background:linear-gradient(100deg,rgba(10,10,9,.85),rgba(10,10,9,.25)),url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=2000&q=85') center/cover;min-height:460px;display:flex;align-items:center;color:white}
+.hero-inner{max-width:1240px;width:100%;margin:auto;padding:70px 7%}.eyebrow{color:#d8bd80;letter-spacing:4px;text-transform:uppercase;font-size:11px}
+h1{font-family:Georgia,serif;font-weight:normal;font-size:clamp(42px,7vw,76px);line-height:1.03;max-width:620px;margin:18px 0}
+.hero p{color:#e1ded6;max-width:470px;line-height:1.7;font-size:15px}.gold-btn{display:inline-block;background:#c1a36a;color:#171715;text-decoration:none;padding:14px 24px;margin-top:16px;font-size:12px;letter-spacing:1px;text-transform:uppercase;border:0;cursor:pointer}
+.wrap{max-width:1240px;margin:auto;padding:65px 5%}.section-head{text-align:center;margin-bottom:32px}.section-head small{color:#a4874e;letter-spacing:3px;text-transform:uppercase}.section-head h2{font-family:Georgia,serif;font-size:36px;font-weight:normal;margin:10px 0}
+.categories{display:grid;grid-template-columns:repeat(5,1fr);gap:13px}.cat{position:relative;min-height:185px;background:#24231f;overflow:hidden;color:#fff;text-decoration:none;display:flex;align-items:end;padding:18px;background-size:cover;background-position:center}.cat:before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.75),transparent 75%)}.cat span{position:relative;font-family:Georgia,serif;font-size:20px}
+.shop{background:var(--paper)}.toolbar{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin:0 0 25px}.filters{display:flex;gap:8px;flex-wrap:wrap}.filter{border:1px solid var(--line);background:transparent;padding:10px 14px;cursor:pointer;font-size:12px}.filter.active,.filter:hover{background:#171715;color:white;border-color:#171715}
+input,select,textarea{font:inherit}.search{padding:11px 13px;border:1px solid var(--line);background:white;min-width:220px}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}.product{background:white;border:1px solid #eeeae2;min-width:0}.product img{width:100%;height:250px;object-fit:cover;background:#eee}.product-info{padding:15px}.product-category{font-size:10px;letter-spacing:1.5px;color:#a4874e;text-transform:uppercase}.product h3{font-family:Georgia,serif;font-size:19px;font-weight:normal;margin:8px 0}.price{font-size:14px;font-weight:bold}.empty{grid-column:1/-1;text-align:center;padding:45px 10px;color:var(--muted);background:#faf9f5}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:45px;align-items:center}.about img{width:100%;height:330px;object-fit:cover}.about h2{font:normal 38px Georgia,serif}.about p{line-height:1.8;color:var(--muted)}
+footer{background:#11110f;color:#ddd;padding:38px 5%;text-align:center}.footer-brand{font:26px Georgia,serif;letter-spacing:2px}.footer-brand span{color:#c1a36a}footer p{font-size:12px;color:#aaa;line-height:1.7}
+.modal{display:none;position:fixed;inset:0;background:#0009;z-index:30;align-items:center;justify-content:center;padding:16px}.modal.show{display:flex}.panel{background:#fffefa;width:min(520px,100%);max-height:90vh;overflow:auto;padding:25px}.panel h2{font:normal 27px Georgia,serif;margin:0 0 18px}.field{display:grid;gap:6px;margin:12px 0}.field label{font-size:12px;color:#555}.field input,.field select,.field textarea{width:100%;padding:11px;border:1px solid #ddd;background:white}.actions{display:flex;gap:10px;margin-top:18px}.actions button{flex:1;padding:12px;border:0;cursor:pointer}.save{background:#171715;color:white}.cancel{background:#eae7df}.note{font-size:12px;color:#777;line-height:1.5}.remove{float:right;border:0;background:none;color:#9a3c30;cursor:pointer}
+
+.order-nav{border:1px solid #b99a5b;padding:9px 12px;color:#e5d2a5!important}.order-hero{background:transparent;color:#fff;border:1px solid #d3b879;margin-left:8px}
+.product-slider{height:330px;position:relative;overflow:hidden;background:#171715;color:white}.slider-track{height:100%;display:flex;transition:transform .55s ease}.slide{min-width:100%;height:100%;position:relative;cursor:pointer;display:flex;align-items:end;background:#292821}.slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.75}.slide:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.8),transparent 80%)}.slide-caption{position:relative;z-index:1;padding:28px 8%;font-family:Georgia,serif;font-size:clamp(22px,4vw,36px);text-shadow:0 2px 8px #000}.slide-caption small{display:block;font:11px Arial,sans-serif;letter-spacing:3px;color:#e3c98f;margin-bottom:8px}.slider-empty{height:100%;display:grid;place-items:center;color:#d8c9a5;font-family:Georgia,serif;font-size:25px}.slider-arrow{position:absolute;top:45%;z-index:2;border:1px solid #ffffff88;background:#1119;color:white;width:42px;height:42px;border-radius:50%;font-size:28px;cursor:pointer}.slider-arrow.prev{left:18px}.slider-arrow.next{right:18px}.slider-dots{position:absolute;z-index:2;bottom:14px;left:0;right:0;display:flex;justify-content:center;gap:7px}.slider-dot{width:8px;height:8px;border:0;border-radius:50%;background:#ffffff77;padding:0;cursor:pointer}.slider-dot.active{background:#d3b879;width:22px;border-radius:8px}.product{cursor:pointer;transition:transform .2s}.product:hover{transform:translateY(-3px)}.detail-panel{position:relative}.detail-image{width:100%;max-height:360px;object-fit:contain;background:#f1efe9;margin-bottom:16px}.detail-panel h2{margin:8px 0}.whatsapp-order{display:block;text-align:center;margin-top:18px}.product-info .remove{position:relative;z-index:2}
+
+@media(max-width:850px){.categories{grid-template-columns:repeat(3,1fr)}.products{grid-template-columns:repeat(2,1fr)}.about{grid-template-columns:1fr}.about img{height:260px}.top{flex-wrap:wrap}nav{order:3;width:100%;gap:15px}}
+@media(max-width:520px){.top{padding:14px 5%}.brand{font-size:23px}nav{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px}nav a{white-space:nowrap}.hero{min-height:400px}.hero-inner{padding:55px 7%}.categories{grid-template-columns:repeat(2,1fr)}.cat{min-height:150px}.products{gap:10px}.product img{height:190px}.product-info{padding:11px}.product h3{font-size:17px}.wrap{padding:48px 5%}.section-head h2{font-size:30px}.search{width:100%}}
+</style>
+</head>
+<body>
+<header><div class="top">
+  <div class="brand">AFAN<span>LUXE</span></div>
+  <nav><a href="#home">Home</a><a href="#categories">Categories</a><a href="#shop">Shop</a><a href="#about">About</a><a class="order-nav" href="https://wa.me/923121651557" target="_blank" rel="noopener">Order: 03121651557</a></nav>
+  <button class="admin" id="adminButton" onclick="adminAction()">Admin Login</button>
+</div></header>
+<section class="product-slider" id="productSlider" aria-label="Featured products">
+  <div class="slider-track" id="sliderTrack"><div class="slider-empty">New arrivals will appear here</div></div>
+  <button class="slider-arrow prev" type="button" onclick="moveSlide(-1)" aria-label="Previous product">‹</button>
+  <button class="slider-arrow next" type="button" onclick="moveSlide(1)" aria-label="Next product">›</button>
+  <div class="slider-dots" id="sliderDots"></div>
+</section>
+
+<section class="hero" id="home"><div class="hero-inner">
+  <div class="eyebrow">Style • Quality • Elegance</div>
+  <h1>Everyday style,<br>elevated.</h1>
+  <p>Discover thoughtfully selected fashion and lifestyle essentials. Find your look, add a little luxury to every day.</p>
+  <a class="gold-btn" href="#shop">Explore Collection</a> <a class="gold-btn order-hero" href="https://wa.me/923121651557" target="_blank" rel="noopener">Order on WhatsApp</a>
+</div></section>
+<section class="wrap" id="categories">
+  <div class="section-head"><small>Explore AfanLuxe</small><h2>Shop by Category</h2></div>
+  <div class="categories">
+    <a class="cat" href="#shop" onclick="setCategory('Men Clothes')" style="background-image:url('https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=600&q=80')"><span>Men Clothes</span></a>
+    <a class="cat" href="#shop" onclick="setCategory('Women Clothes')" style="background-image:url('https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=600&q=80')"><span>Women Clothes</span></a>
+    <a class="cat" href="#shop" onclick="setCategory('Perfumes')" style="background-image:url('https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=600&q=80')"><span>Perfumes</span></a>
+    <a class="cat" href="#shop" onclick="setCategory('Watches')" style="background-image:url('https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=600&q=80')"><span>Watches</span></a>
+    <a class="cat" href="#shop" onclick="setCategory('Bedsheets')" style="background-image:url('https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=600&q=80')"><span>Bedsheets</span></a>
+  </div>
+</section>
+<section class="shop" id="shop"><div class="wrap">
+  <div class="section-head"><small>Curated for you</small><h2>Our Collection</h2></div>
+  <div class="toolbar"><div class="filters" id="filters"></div><input class="search" id="search" placeholder="Search products..." oninput="renderProducts()"></div>
+  <div class="products" id="products"></div>
+</div></section>
+<section class="wrap about" id="about">
+  <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&w=1000&q=85" alt="AfanLuxe fashion collection">
+  <div><div class="eyebrow">The AfanLuxe touch</div><h2>A little luxury in every detail.</h2><p>AfanLuxe brings together clothing, fragrance, watches and home essentials in one easy-to-explore store. Our collection will keep growing — check back for new arrivals.</p><a class="gold-btn" href="#shop">Discover More</a></div>
+</section>
+<footer><div class="footer-brand">AFAN<span>LUXE</span></div><p>Style • Quality • Elegance<br>© <span id="year"></span> AfanLuxe. All rights reserved.</p></footer>
+
+<div class="modal" id="loginModal"><div class="panel" style="max-width:390px">
+  <h2>Admin Login</h2>
+  <form id="loginForm">
+    <div class="field"><label>Admin password</label><input id="adminPassword" type="password" required autocomplete="current-password" placeholder="Enter admin password"></div>
+    <p id="loginError" class="note" style="color:#a33;display:none">Incorrect password. Please try again.</p>
+    <div class="actions"><button type="button" class="cancel" onclick="closeLogin()">Cancel</button><button class="save" type="submit">Login</button></div>
+  </form>
+  <p class="note">Only the store owner can upload products.</p>
+</div></div>
+<div class="modal" id="adminModal"><div class="panel">
+  <h2>Add a product</h2>
+  <form id="productForm">
+    <div class="field"><label>Product name</label><input id="pName" required placeholder="e.g. Classic wrist watch"></div>
+    <div class="field"><label>Category</label><select id="pCategory"><option>Men Clothes</option><option>Women Clothes</option><option>Perfumes</option><option>Watches</option><option>Bedsheets</option></select></div>
+    <div class="field"><label>Price (PKR)</label><input id="pPrice" type="number" min="0" placeholder="e.g. 2500"></div>
+    <div class="field"><label>Product photo</label><input id="pImage" type="file" accept="image/*" required></div>
+    <div class="field"><label>Short description (optional)</label><textarea id="pDesc" rows="2" placeholder="Product details..."></textarea></div>
+    <div class="actions"><button type="button" class="cancel" onclick="closeAdmin()">Cancel</button><button class="save" type="submit">Save Product</button></div>
+  </form>
+  <p class="note">Products are saved online. After the first website setup, every new product will appear for all visitors automatically.</p>
+</div></div>
+
+<div class="modal" id="detailModal"><div class="panel detail-panel">
+  <button class="remove" style="float:right;font-size:24px" onclick="closeDetail()" aria-label="Close">×</button>
+  <img id="detailImage" class="detail-image" alt="Product photo">
+  <div class="product-category" id="detailCategory"></div><h2 id="detailName"></h2>
+  <div class="price" id="detailPrice"></div><p id="detailDesc" class="note"></p>
+  <a id="detailOrder" class="gold-btn whatsapp-order" href="https://wa.me/923121651557" target="_blank" rel="noopener">Order on WhatsApp — 03121651557</a>
+</div></div>
+
+<script>
+const categories=['All','Men Clothes','Women Clothes','Perfumes','Watches','Bedsheets'];
+let activeCategory='All';
+let products=[];
+let isAdmin=sessionStorage.getItem('afanluxe_admin')==='yes';
+let adminPassword=sessionStorage.getItem('afanluxe_admin_password')||'';
+let slideIndex=0,slideTimer=null;
+const WHATSAPP='923121651557';
+const localProducts=()=>{try{return JSON.parse(localStorage.getItem('afanluxe_products')||'[]')}catch(e){return []}};
+function escapeHtml(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+async function apiLoad(){const oldProducts=localProducts();try{const r=await fetch('/api/products',{cache:'no-store'});if(!r.ok)throw new Error('Could not load online products');const data=await r.json();products=Array.isArray(data.products)?data.products:[];if(products.length||!oldProducts.length)localStorage.setItem('afanluxe_products',JSON.stringify(products));renderAll()}catch(e){products=oldProducts;renderAll();console.warn(e)}}
+function setCategory(c){activeCategory=c;renderProducts();document.getElementById('shop').scrollIntoView({behavior:'smooth'})}
+function renderFilters(){document.getElementById('filters').innerHTML=categories.map(c=>`<button class="filter ${c===activeCategory?'active':''}" onclick="setCategory('${c}')">${c}</button>`).join('')}
+function renderProducts(){renderFilters();const q=document.getElementById('search').value.toLowerCase();const list=products.filter(p=>(activeCategory==='All'||p.category===activeCategory)&&(`${p.name} ${p.category} ${p.desc||''}`).toLowerCase().includes(q));const root=document.getElementById('products');if(!list.length){root.innerHTML='<div class="empty"><strong>Your collection is waiting.</strong><br><br>New products will appear here soon.</div>';return}root.innerHTML=list.map(p=>`<article class="product" onclick="openDetail('${p.id}')"><img src="${p.image}" alt="${escapeHtml(p.name)}"><div class="product-info"><div class="product-category">${escapeHtml(p.category)}</div><h3>${escapeHtml(p.name)}</h3>${p.price?`<div class="price">Rs. ${Number(p.price).toLocaleString('en-PK')}</div>`:''}${p.desc?`<p class="note">${escapeHtml(p.desc)}</p>`:''}<span class="note">Click to view and order</span>${isAdmin?`<button class="remove" onclick="event.stopPropagation();removeProduct('${p.id}')">Remove</button>`:''}</div></article>`).join('')}
+function renderSlider(){const track=document.getElementById('sliderTrack'),dots=document.getElementById('sliderDots');if(!products.length){track.innerHTML='<div class="slider-empty">Your new products will slide here</div>';dots.innerHTML='';return}if(slideIndex>=products.length)slideIndex=0;track.innerHTML=products.map(p=>`<div class="slide" onclick="openDetail('${p.id}')"><img src="${p.image}" alt="${escapeHtml(p.name)}"><div class="slide-caption"><small>FEATURED COLLECTION</small>${escapeHtml(p.name)}${p.price?` · Rs. ${Number(p.price).toLocaleString('en-PK')}`:''}</div></div>`).join('');track.style.transform=`translateX(-${slideIndex*100}%)`;dots.innerHTML=products.map((p,i)=>`<button class="slider-dot ${i===slideIndex?'active':''}" onclick="goSlide(${i})" aria-label="Show product ${i+1}"></button>`).join('')}
+function goSlide(i){slideIndex=i;renderSlider();restartSlider()}function moveSlide(dir){if(!products.length)return;slideIndex=(slideIndex+dir+products.length)%products.length;renderSlider();restartSlider()}function restartSlider(){clearInterval(slideTimer);if(products.length>1)slideTimer=setInterval(()=>moveSlide(1),3800)}
+function renderAll(){renderProducts();renderSlider();restartSlider()}
+function openDetail(id){const p=products.find(x=>x.id===id);if(!p)return;document.getElementById('detailImage').src=p.image;document.getElementById('detailImage').alt=p.name;document.getElementById('detailCategory').textContent=p.category||'';document.getElementById('detailName').textContent=p.name||'';document.getElementById('detailPrice').textContent=p.price?'Rs. '+Number(p.price).toLocaleString('en-PK'):'';document.getElementById('detailDesc').textContent=p.desc||'';const msg=`Assalam-o-Alaikum, I want to order: ${p.name}${p.price?' (Rs. '+p.price+')':''}. Please share details.`;document.getElementById('detailOrder').href=`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;document.getElementById('detailModal').classList.add('show')}
+function closeDetail(){document.getElementById('detailModal').classList.remove('show')}
+function adminAction(){if(isAdmin){openAdmin()}else{document.getElementById('loginModal').classList.add('show');document.getElementById('adminPassword').focus()}}
+function closeLogin(){document.getElementById('loginModal').classList.remove('show');document.getElementById('loginError').style.display='none'}
+document.getElementById('loginForm').addEventListener('submit',async e=>{e.preventDefault();const pw=document.getElementById('adminPassword').value;try{const r=await fetch('/api/admin',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:pw})});if(!r.ok)throw new Error('Wrong password');adminPassword=pw;isAdmin=true;sessionStorage.setItem('afanluxe_admin','yes');sessionStorage.setItem('afanluxe_admin_password',pw);closeLogin();document.getElementById('adminButton').textContent='＋ Add Products';if(!products.length){const old=localProducts();if(old.length){products=old;await saveProducts(false)}}renderAll();}catch(err){document.getElementById('loginError').style.display='block';document.getElementById('adminPassword').select()}});
+function openAdmin(){if(!isAdmin){adminAction();return}document.getElementById('adminModal').classList.add('show')}
+function closeAdmin(){document.getElementById('adminModal').classList.remove('show')}
+async function saveProducts(showMessage=true){try{const r=await fetch('/api/products',{method:'POST',headers:{'Content-Type':'application/json','x-admin-password':adminPassword},body:JSON.stringify({products})});if(!r.ok)throw new Error(await r.text());localStorage.setItem('afanluxe_products',JSON.stringify(products));renderAll();if(showMessage)alert('Product saved! It is now visible to everyone.')}catch(e){alert('Online save nahi ho saka. Netlify par website ka naya folder deploy karein aur Admin Password setting check karein. '+e.message);throw e}}
+async function removeProduct(id){if(!confirm('Remove this product?'))return;const old=products;products=products.filter(p=>p.id!==id);try{await saveProducts()}catch(e){products=old;renderAll()}}
+function compressImage(file){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onerror=reject;reader.onload=()=>{const img=new Image();img.onerror=reject;img.onload=()=>{const scale=Math.min(1,1200/Math.max(img.width,img.height));const c=document.createElement('canvas');c.width=Math.round(img.width*scale);c.height=Math.round(img.height*scale);c.getContext('2d').drawImage(img,0,0,c.width,c.height);resolve(c.toDataURL('image/jpeg',.78))};img.src=reader.result};reader.readAsDataURL(file)})}
+document.getElementById('productForm').addEventListener('submit',async e=>{e.preventDefault();const file=document.getElementById('pImage').files[0];if(!file)return;const btn=e.submitter;btn.disabled=true;btn.textContent='Saving...';try{const image=await compressImage(file);const p={id:Date.now().toString(),name:document.getElementById('pName').value.trim(),category:document.getElementById('pCategory').value,price:document.getElementById('pPrice').value,desc:document.getElementById('pDesc').value.trim(),image};products.unshift(p);await saveProducts();e.target.reset();closeAdmin();document.getElementById('shop').scrollIntoView({behavior:'smooth'})}catch(err){}finally{btn.disabled=false;btn.textContent='Save Product'}});
+document.getElementById('year').textContent=new Date().getFullYear();if(isAdmin)document.getElementById('adminButton').textContent='＋ Add Products';apiLoad();
+</script>
+</body></html>
